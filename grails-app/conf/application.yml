@@ -1,0 +1,101 @@
+---
+info:
+  app:
+    name: '@info.app.name@'
+    version: '@info.app.version@'
+    grailsVersion: '@info.app.grailsVersion@'
+spring:
+  groovy:
+    template:
+      check-template-location: false
+beans:
+  authInterceptor:
+    order: 5
+grails:
+  profile: web
+  codegen:
+    defaultPackage: vin
+  mime:
+    disable:
+      accept:
+        header:
+          userAgents:
+            - Gecko
+            - WebKit
+            - Presto
+            - Trident
+    types:
+      all: '*/*'
+      atom: application/atom+xml
+      css: text/css
+      csv: text/csv
+      form: application/x-www-form-urlencoded
+      html:
+        - text/html
+        - application/xhtml+xml
+      js: text/javascript
+      json:
+        - application/json
+        - text/json
+      multipartForm: multipart/form-data
+      rss: application/rss+xml
+      text: text/plain
+      hal:
+        - application/hal+json
+        - application/hal+xml
+      xml:
+        - text/xml
+        - application/xml
+  urlmapping:
+    cache:
+      maxsize: 1000
+  controllers:
+    defaultScope: singleton
+    upload:
+      maxFileSize: 5120000
+      maxRequestSize: 51200000
+  converters:
+    encoding: UTF-8
+  hibernate:
+    cache:
+      queries: false
+  views:
+    default:
+      codec: html
+    gsp:
+      encoding: UTF-8
+      htmlcodec: xml
+      codecs:
+        expression: html
+        scriptlets: html
+        taglib: none
+        staticparts: none
+
+---
+dataSource:
+  pooled: true
+  jmxExport: true
+  driverClassName: org.h2.Driver
+  username: sa
+  password:
+
+environments:
+  development:
+    dataSource:
+      dbCreate: update
+      driverClassName: org.postgresql.Driver
+      dialect: net.kaleidos.hibernate.PostgresqlExtensionsDialect
+      url: jdbc:postgresql://localhost:5432/vin_dev
+      username: slava
+  test:
+    dataSource:
+      dbCreate: update
+      url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+  production:
+    dataSource:
+      dbCreate: update
+      driverClassName: org.postgresql.Driver
+      dialect: net.kaleidos.hibernate.PostgresqlExtensionsDialect
+      url: jdbc:postgresql://armysos.cdndqk3vif1r.eu-west-1.rds.amazonaws.com:5432/vin
+      username: root
+      password: pHY2w62c
