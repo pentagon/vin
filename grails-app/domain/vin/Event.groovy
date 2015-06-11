@@ -8,9 +8,11 @@ class Event {
   Date dateCreated
   Date lastUpdated
   Boolean isDeleted
+  Double ck42Coord
 
   static constraints = {
     description nullable: true, blank: true
+    ck42Coord nullable: true, blank: true
   }
 
   static mapping = {

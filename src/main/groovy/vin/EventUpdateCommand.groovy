@@ -6,6 +6,7 @@ class EventUpdateCommand implements grails.validation.Validateable {
   String id
   String gpsLat
   String gpsLng
+  String ck42Coord
   String description
   String eventTypeId
   String dateRegistered
@@ -14,5 +15,6 @@ class EventUpdateCommand implements grails.validation.Validateable {
   static constraints = {
     description nullable: true, blank: true
     assetFiles nullable: true
+    ck42Coord nullable: true
   }
 }

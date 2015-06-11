@@ -5,7 +5,9 @@
     <legend><g:message code="default.event.location"/></legend>
 
     <div class="form-group">
-      <label for="gpsLat" class="col-lg-3 control-label"><strong>GPS Latitude</strong></label>
+      <label for="gpsLat" class="col-lg-3 control-label">
+        <strong>GPS Latitude</strong>
+      </label>
 
       <div class="col-lg-9">
         <g:textField name="gpsLat" value="${event?.gpsLat}"/>
@@ -13,10 +15,22 @@
     </div>
 
     <div class="form-group">
-      <label for="gpsLng" class="col-lg-3 control-label"><strong>GPS Longitude</strong></label>
+      <label for="gpsLng" class="col-lg-3 control-label">
+        <strong>GPS Longitude</strong>
+      </label>
 
       <div class="col-lg-9">
         <g:textField name="gpsLng" value="${event?.gpsLng}"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ck42Coord" class="col-lg-3 control-label">
+        <strong><g:message code="default.event.ck42coord"/></strong>
+      </label>
+
+      <div class="col-lg-9">
+        <g:textField name="ck42Coord" value="${event?.ck42Coord}"/>
       </div>
     </div>
 
@@ -28,8 +42,9 @@
     <legend><g:message code="default.event.common"/></legend>
 
     <div class="form-group">
-      <label for="dateRegistered" class="col-lg-3 control-label"><strong><g:message
-        code="default.events.date"/></strong></label>
+      <label for="dateRegistered" class="col-lg-3 control-label">
+        <strong><g:message code="default.events.date"/></strong>
+      </label>
 
       <div class="col-lg-9">
         <div class="form-group">
@@ -44,7 +59,8 @@
     </div>
 
     <div class="form-group">
-      <label for="eventTypeId" class="col-lg-3 control-label"><strong><g:message code="default.event_types"/></strong>
+      <label for="eventTypeId" class="col-lg-3 control-label">
+        <strong><g:message code="default.event_types"/></strong>
       </label>
 
       <div class="col-lg-9">
@@ -54,8 +70,9 @@
     </div>
 
     <div class="form-group">
-      <label for="description" class="col-lg-3 control-label"><strong><g:message
-        code="default.events.description"/></strong></label>
+      <label for="description" class="col-lg-3 control-label">
+        <strong><g:message code="default.events.description"/></strong>
+      </label>
 
       <div class="col-lg-9">
         <g:textArea name="description" value="${event?.description}" cols="40" rows="5"/>
@@ -73,12 +90,14 @@
     </div>
 
     <div class="col-lg-12">
-      <g:each in="${event.assets}">
-        <a data-toggle="lightbox" data-gallery="multiimages" href="/files/${event.id}/${it.bucketKey}"
-          class="thumbnail pull-left">
-          <img src="/files/${event.id}/${it.bucketKey}" width="180">
-        </a>
-      </g:each>
+      <g:if test="${event.hasProperty('assets')}">
+        <g:each in="${event?.assets}">
+          <a data-toggle="lightbox" data-gallery="multiimages" href="/files/${event.id}/${it.bucketKey}"
+            class="thumbnail pull-left">
+            <img src="/files/${event.id}/${it.bucketKey}" width="180">
+          </a>
+        </g:each>
+      </g:if>
     </div>
   </div>
 </div>

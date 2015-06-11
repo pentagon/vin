@@ -181,6 +181,15 @@
 
         <div class="row">
           <div class="col-lg-12">
+            <div class="pull-right">
+              <strong>CK42</strong>
+              ${event.ck42Coord}
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
             <div id="map-canvas"></div>
           </div>
         </div>

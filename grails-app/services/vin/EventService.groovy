@@ -36,6 +36,7 @@ class EventService {
     event.user = user
     event.gpsLat = cmd.gpsLat.toDouble()
     event.gpsLng = cmd.gpsLng.toDouble()
+    event.ck42Coord = cmd.ck42Coord?.toDouble()
     event.dateRegistered = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm").parseDateTime(cmd.dateRegistered).toDate()
     event.isDeleted = false
     if (!event.validate()) {
@@ -53,10 +54,10 @@ class EventService {
   Event update(EventUpdateCommand cmd) {
     Event event = Event.load(cmd.id)
     event.description = cmd.description
-    println(cmd.dateRegistered)
     event.dateRegistered = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm").parseDateTime(cmd.dateRegistered).toDate()
     event.gpsLat = cmd.gpsLat.toDouble()
     event.gpsLng = cmd.gpsLng.toDouble()
+    event.ck42Coord = cmd.ck42Coord?.toDouble()
     if (!event.validate()) {
       cmd.errors = event.errors
       throw new ValidationException('Event validation fails', cmd.errors)
